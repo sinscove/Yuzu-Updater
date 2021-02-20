@@ -1,2 +1,2 @@
 # Yuzu Updater
-Totally legal and legit downloader for Yuzu Early Access
+Totally legal and legit downloader for Yuzu Early Access.
