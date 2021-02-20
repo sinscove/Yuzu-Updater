@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuzu Updater", "Yuzu Updater.csproj", "{63D40256-C95B-4763-8847-1E46F7CC4FBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63D40256-C95B-4763-8847-1E46F7CC4FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D40256-C95B-4763-8847-1E46F7CC4FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D40256-C95B-4763-8847-1E46F7CC4FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D40256-C95B-4763-8847-1E46F7CC4FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {321DF84F-E613-4599-B77B-34AF71BECEF1}
+	EndGlobalSection
+EndGlobal
