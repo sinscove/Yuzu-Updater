@@ -39,7 +39,7 @@ namespace Yuzu_Updater
             try
             {
                 SetControlsEnabled(false);
-                var response = await httpClient.GetAsync("");
+                var response = await httpClient.GetAsync("https://pastebin.com/raw/tc6Pk7rz");
                 if (response.IsSuccessStatusCode)
                 {
                     try
