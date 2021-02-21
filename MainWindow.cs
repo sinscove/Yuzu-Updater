@@ -306,13 +306,14 @@ namespace Yuzu_Updater
                 {
                     SetStatusAndProgress("Downloading version " + version + "\r\nThis will take while..", 0);
                     SetControlsEnabled(false);
-                    var response = await httpClient.GetAsync(archivedVersions[version]);
 
                     var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
                     var gitLink = gitUrl + version + "/Windows-Yuzu-EA-" + version + ".7z";
 
-                    response = await httpClient.GetAsync(gitLink);
-                    if (response.IsSuccessStatusCode)
+                    var anonResponse = await httpClient.GetAsync(archivedVersions[version]);
+                    var gitResponse = await httpClient.GetAsync(gitLink);
+
+                    if (gitResponse.IsSuccessStatusCode)
                     {
                         String fileName = "Windows-Yuzu-EA-" + version + ".7z";
                         String address = gitLink;
@@ -336,9 +337,9 @@ namespace Yuzu_Updater
                         }
                     }
 
-                    if (response.IsSuccessStatusCode)
+                    if (anonResponse.IsSuccessStatusCode && !gitResponse.IsSuccessStatusCode)
                     {
-                        var content = await response.Content.ReadAsStringAsync();
+                        var content = await anonResponse.Content.ReadAsStringAsync();
                         var pattern = new Regex("https://cdn.*.anonfiles.com/.*/(YuzuEA-.*.7z)");
 
                         var match = pattern.Match(content);

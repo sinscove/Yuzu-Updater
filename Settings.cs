@@ -106,7 +106,7 @@ namespace Yuzu_Updater
                         }
                         if(this.MaxConnections == 0)
                         {
-                            this.MaxConnections = 16;
+                            this.MaxConnections = 4;
                         }
                     }
 
@@ -118,10 +118,10 @@ namespace Yuzu_Updater
                 this.AutoClose = false;
                 this.LaunchAsAdmin = false;
                 this.BackupSaveFiles = false;
-                this.AcceleratedDownloads = false;
+                this.AcceleratedDownloads = true;
                 this.DesiredVersion = "Latest";
                 this.Version = "";
-                this.MaxConnections = 32;
+                this.MaxConnections = 4;
                 this.SinMode = false;
             }
         }

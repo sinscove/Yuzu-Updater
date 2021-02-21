@@ -41,6 +41,8 @@ namespace Yuzu_Updater
             this.AutoLaunchCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DownloadSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.SinModeLabel = new System.Windows.Forms.Label();
+            this.SinModeCheckbox = new System.Windows.Forms.CheckBox();
             this.LabelMaxConnections = new System.Windows.Forms.Label();
             this.MaxConnectionsCounter = new System.Windows.Forms.NumericUpDown();
             this.LabelAcceleratedDownloadsDesc = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@ namespace Yuzu_Updater
             this.SaveManagementGroupBox = new System.Windows.Forms.GroupBox();
             this.LabelBackupSaveFilesDesc = new System.Windows.Forms.Label();
             this.BackupSaveFilesCheckbox = new System.Windows.Forms.CheckBox();
-            this.SinModeCheckbox = new System.Windows.Forms.CheckBox();
-            this.SinModeLabel = new System.Windows.Forms.Label();
             this.TabController.SuspendLayout();
             this.LaunchTabPage.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
@@ -65,20 +65,22 @@ namespace Yuzu_Updater
             this.TabController.Controls.Add(this.LaunchTabPage);
             this.TabController.Controls.Add(this.tabPage2);
             this.TabController.HotTrack = true;
-            this.TabController.Location = new System.Drawing.Point(12, 12);
+            this.TabController.Location = new System.Drawing.Point(8, 8);
+            this.TabController.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TabController.Name = "TabController";
             this.TabController.SelectedIndex = 0;
-            this.TabController.Size = new System.Drawing.Size(523, 447);
+            this.TabController.Size = new System.Drawing.Size(346, 311);
             this.TabController.TabIndex = 0;
             // 
             // LaunchTabPage
             // 
             this.LaunchTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(41)))));
             this.LaunchTabPage.Controls.Add(this.SettingsGroupBox);
-            this.LaunchTabPage.Location = new System.Drawing.Point(4, 29);
+            this.LaunchTabPage.Location = new System.Drawing.Point(4, 22);
+            this.LaunchTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LaunchTabPage.Name = "LaunchTabPage";
-            this.LaunchTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LaunchTabPage.Size = new System.Drawing.Size(515, 356);
+            this.LaunchTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LaunchTabPage.Size = new System.Drawing.Size(341, 265);
             this.LaunchTabPage.TabIndex = 0;
             this.LaunchTabPage.Text = "Launch";
             // 
@@ -93,9 +95,11 @@ namespace Yuzu_Updater
             this.SettingsGroupBox.Controls.Add(this.AutoLaunchCheckbox);
             this.SettingsGroupBox.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsGroupBox.ForeColor = System.Drawing.Color.White;
-            this.SettingsGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.SettingsGroupBox.Location = new System.Drawing.Point(4, 4);
+            this.SettingsGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(503, 257);
+            this.SettingsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(335, 167);
             this.SettingsGroupBox.TabIndex = 4;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "Launch";
@@ -103,18 +107,20 @@ namespace Yuzu_Updater
             // LabelAutoCloseDesc
             // 
             this.LabelAutoCloseDesc.ForeColor = System.Drawing.Color.Silver;
-            this.LabelAutoCloseDesc.Location = new System.Drawing.Point(30, 216);
+            this.LabelAutoCloseDesc.Location = new System.Drawing.Point(20, 140);
+            this.LabelAutoCloseDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelAutoCloseDesc.Name = "LabelAutoCloseDesc";
-            this.LabelAutoCloseDesc.Size = new System.Drawing.Size(467, 27);
+            this.LabelAutoCloseDesc.Size = new System.Drawing.Size(311, 18);
             this.LabelAutoCloseDesc.TabIndex = 5;
             this.LabelAutoCloseDesc.Text = "Close the updater immediately after performing an update.";
             // 
             // LabelAdminDesc
             // 
             this.LabelAdminDesc.ForeColor = System.Drawing.Color.Silver;
-            this.LabelAdminDesc.Location = new System.Drawing.Point(30, 133);
+            this.LabelAdminDesc.Location = new System.Drawing.Point(20, 86);
+            this.LabelAdminDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelAdminDesc.Name = "LabelAdminDesc";
-            this.LabelAdminDesc.Size = new System.Drawing.Size(467, 55);
+            this.LabelAdminDesc.Size = new System.Drawing.Size(311, 36);
             this.LabelAdminDesc.TabIndex = 4;
             this.LabelAdminDesc.Text = "Launch Yuzu with Administrator privileges. This option is recommended to take adv" +
     "antage of \"Threaded Optimization\" in NVIDIA Control Panel.";
@@ -122,9 +128,10 @@ namespace Yuzu_Updater
             // LabelAutoLaunch
             // 
             this.LabelAutoLaunch.ForeColor = System.Drawing.Color.Silver;
-            this.LabelAutoLaunch.Location = new System.Drawing.Point(30, 50);
+            this.LabelAutoLaunch.Location = new System.Drawing.Point(20, 32);
+            this.LabelAutoLaunch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelAutoLaunch.Name = "LabelAutoLaunch";
-            this.LabelAutoLaunch.Size = new System.Drawing.Size(467, 55);
+            this.LabelAutoLaunch.Size = new System.Drawing.Size(311, 36);
             this.LabelAutoLaunch.TabIndex = 3;
             this.LabelAutoLaunch.Text = "Launch Yuzu immediately after updating if \'Latest\' is selected. Otherwise it will" +
     " automatically launch the selected version on startup.";
@@ -133,9 +140,10 @@ namespace Yuzu_Updater
             // 
             this.LaunchAsAdminCheckbox.AutoSize = true;
             this.LaunchAsAdminCheckbox.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LaunchAsAdminCheckbox.Location = new System.Drawing.Point(6, 108);
+            this.LaunchAsAdminCheckbox.Location = new System.Drawing.Point(4, 70);
+            this.LaunchAsAdminCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LaunchAsAdminCheckbox.Name = "LaunchAsAdminCheckbox";
-            this.LaunchAsAdminCheckbox.Size = new System.Drawing.Size(123, 22);
+            this.LaunchAsAdminCheckbox.Size = new System.Drawing.Size(85, 18);
             this.LaunchAsAdminCheckbox.TabIndex = 2;
             this.LaunchAsAdminCheckbox.Text = "Admin Mode";
             this.LaunchAsAdminCheckbox.UseVisualStyleBackColor = true;
@@ -145,9 +153,10 @@ namespace Yuzu_Updater
             // 
             this.AutoCloseCheckbox.AutoSize = true;
             this.AutoCloseCheckbox.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AutoCloseCheckbox.Location = new System.Drawing.Point(6, 191);
+            this.AutoCloseCheckbox.Location = new System.Drawing.Point(4, 124);
+            this.AutoCloseCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AutoCloseCheckbox.Name = "AutoCloseCheckbox";
-            this.AutoCloseCheckbox.Size = new System.Drawing.Size(112, 22);
+            this.AutoCloseCheckbox.Size = new System.Drawing.Size(80, 18);
             this.AutoCloseCheckbox.TabIndex = 1;
             this.AutoCloseCheckbox.Text = "Auto-Close";
             this.AutoCloseCheckbox.UseVisualStyleBackColor = true;
@@ -157,9 +166,10 @@ namespace Yuzu_Updater
             // 
             this.AutoLaunchCheckbox.AutoSize = true;
             this.AutoLaunchCheckbox.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AutoLaunchCheckbox.Location = new System.Drawing.Point(6, 25);
+            this.AutoLaunchCheckbox.Location = new System.Drawing.Point(4, 16);
+            this.AutoLaunchCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AutoLaunchCheckbox.Name = "AutoLaunchCheckbox";
-            this.AutoLaunchCheckbox.Size = new System.Drawing.Size(121, 22);
+            this.AutoLaunchCheckbox.Size = new System.Drawing.Size(89, 18);
             this.AutoLaunchCheckbox.TabIndex = 0;
             this.AutoLaunchCheckbox.Text = "Auto-Launch";
             this.AutoLaunchCheckbox.UseVisualStyleBackColor = true;
@@ -171,10 +181,11 @@ namespace Yuzu_Updater
             this.tabPage2.Controls.Add(this.DownloadSettingsGroupBox);
             this.tabPage2.Controls.Add(this.WarningLabel);
             this.tabPage2.Controls.Add(this.SaveManagementGroupBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(515, 414);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(338, 285);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Experimental";
             // 
@@ -187,35 +198,61 @@ namespace Yuzu_Updater
             this.DownloadSettingsGroupBox.Controls.Add(this.LabelAcceleratedDownloadsDesc);
             this.DownloadSettingsGroupBox.Controls.Add(this.AcceleratedDownloadsCheckbox);
             this.DownloadSettingsGroupBox.ForeColor = System.Drawing.Color.White;
-            this.DownloadSettingsGroupBox.Location = new System.Drawing.Point(9, 160);
+            this.DownloadSettingsGroupBox.Location = new System.Drawing.Point(6, 104);
+            this.DownloadSettingsGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DownloadSettingsGroupBox.Name = "DownloadSettingsGroupBox";
-            this.DownloadSettingsGroupBox.Size = new System.Drawing.Size(500, 187);
+            this.DownloadSettingsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DownloadSettingsGroupBox.Size = new System.Drawing.Size(333, 122);
             this.DownloadSettingsGroupBox.TabIndex = 2;
             this.DownloadSettingsGroupBox.TabStop = false;
             this.DownloadSettingsGroupBox.Text = "Downloads";
             // 
+            // SinModeLabel
+            // 
+            this.SinModeLabel.ForeColor = System.Drawing.Color.Silver;
+            this.SinModeLabel.Location = new System.Drawing.Point(18, 101);
+            this.SinModeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SinModeLabel.Name = "SinModeLabel";
+            this.SinModeLabel.Size = new System.Drawing.Size(311, 18);
+            this.SinModeLabel.TabIndex = 9;
+            this.SinModeLabel.Text = "Avoids unreliable file hosting providers.";
+            // 
+            // SinModeCheckbox
+            // 
+            this.SinModeCheckbox.AutoSize = true;
+            this.SinModeCheckbox.Location = new System.Drawing.Point(5, 84);
+            this.SinModeCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SinModeCheckbox.Name = "SinModeCheckbox";
+            this.SinModeCheckbox.Size = new System.Drawing.Size(71, 17);
+            this.SinModeCheckbox.TabIndex = 8;
+            this.SinModeCheckbox.Text = "Sin Mode";
+            this.SinModeCheckbox.UseVisualStyleBackColor = true;
+            this.SinModeCheckbox.CheckedChanged += new System.EventHandler(this.SinModeCheckbox_CheckedChanged);
+            // 
             // LabelMaxConnections
             // 
             this.LabelMaxConnections.ForeColor = System.Drawing.Color.Silver;
-            this.LabelMaxConnections.Location = new System.Drawing.Point(296, 26);
+            this.LabelMaxConnections.Location = new System.Drawing.Point(197, 17);
+            this.LabelMaxConnections.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelMaxConnections.Name = "LabelMaxConnections";
-            this.LabelMaxConnections.Size = new System.Drawing.Size(132, 24);
+            this.LabelMaxConnections.Size = new System.Drawing.Size(88, 16);
             this.LabelMaxConnections.TabIndex = 7;
             this.LabelMaxConnections.Text = "Max Connections";
             // 
             // MaxConnectionsCounter
             // 
-            this.MaxConnectionsCounter.Location = new System.Drawing.Point(434, 25);
+            this.MaxConnectionsCounter.Location = new System.Drawing.Point(289, 16);
+            this.MaxConnectionsCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaxConnectionsCounter.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.MaxConnectionsCounter.Name = "MaxConnectionsCounter";
-            this.MaxConnectionsCounter.Size = new System.Drawing.Size(60, 26);
+            this.MaxConnectionsCounter.Size = new System.Drawing.Size(40, 20);
             this.MaxConnectionsCounter.TabIndex = 6;
             this.MaxConnectionsCounter.Value = new decimal(new int[] {
-            16,
+            4,
             0,
             0,
             0});
@@ -224,9 +261,10 @@ namespace Yuzu_Updater
             // LabelAcceleratedDownloadsDesc
             // 
             this.LabelAcceleratedDownloadsDesc.ForeColor = System.Drawing.Color.Silver;
-            this.LabelAcceleratedDownloadsDesc.Location = new System.Drawing.Point(27, 53);
+            this.LabelAcceleratedDownloadsDesc.Location = new System.Drawing.Point(18, 34);
+            this.LabelAcceleratedDownloadsDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelAcceleratedDownloadsDesc.Name = "LabelAcceleratedDownloadsDesc";
-            this.LabelAcceleratedDownloadsDesc.Size = new System.Drawing.Size(467, 73);
+            this.LabelAcceleratedDownloadsDesc.Size = new System.Drawing.Size(311, 47);
             this.LabelAcceleratedDownloadsDesc.TabIndex = 5;
             this.LabelAcceleratedDownloadsDesc.Text = "Uses parallel connections to download files at faster rates.\r\nLower numbers impro" +
     "ve stability.\r\nHigher numbers improve speed.";
@@ -234,9 +272,10 @@ namespace Yuzu_Updater
             // AcceleratedDownloadsCheckbox
             // 
             this.AcceleratedDownloadsCheckbox.AutoSize = true;
-            this.AcceleratedDownloadsCheckbox.Location = new System.Drawing.Point(7, 26);
+            this.AcceleratedDownloadsCheckbox.Location = new System.Drawing.Point(5, 17);
+            this.AcceleratedDownloadsCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AcceleratedDownloadsCheckbox.Name = "AcceleratedDownloadsCheckbox";
-            this.AcceleratedDownloadsCheckbox.Size = new System.Drawing.Size(203, 24);
+            this.AcceleratedDownloadsCheckbox.Size = new System.Drawing.Size(139, 17);
             this.AcceleratedDownloadsCheckbox.TabIndex = 0;
             this.AcceleratedDownloadsCheckbox.Text = "Accelerated Downloads";
             this.AcceleratedDownloadsCheckbox.UseVisualStyleBackColor = true;
@@ -246,22 +285,26 @@ namespace Yuzu_Updater
             // 
             this.WarningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WarningLabel.ForeColor = System.Drawing.Color.Red;
-            this.WarningLabel.Location = new System.Drawing.Point(6, 350);
+            this.WarningLabel.Location = new System.Drawing.Point(4, 228);
+            this.WarningLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WarningLabel.Name = "WarningLabel";
-            this.WarningLabel.Size = new System.Drawing.Size(503, 61);
+            this.WarningLabel.Size = new System.Drawing.Size(335, 56);
             this.WarningLabel.TabIndex = 1;
             this.WarningLabel.Text = "Warning\r\nExperimental settings should be used at your own risk.\r\nThe author accep" +
     "ts no responsibility for any data corruption that may occur.";
             this.WarningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WarningLabel.Click += new System.EventHandler(this.WarningLabel_Click);
             // 
             // SaveManagementGroupBox
             // 
             this.SaveManagementGroupBox.Controls.Add(this.LabelBackupSaveFilesDesc);
             this.SaveManagementGroupBox.Controls.Add(this.BackupSaveFilesCheckbox);
             this.SaveManagementGroupBox.ForeColor = System.Drawing.Color.White;
-            this.SaveManagementGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.SaveManagementGroupBox.Location = new System.Drawing.Point(4, 4);
+            this.SaveManagementGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveManagementGroupBox.Name = "SaveManagementGroupBox";
-            this.SaveManagementGroupBox.Size = new System.Drawing.Size(503, 147);
+            this.SaveManagementGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveManagementGroupBox.Size = new System.Drawing.Size(335, 96);
             this.SaveManagementGroupBox.TabIndex = 0;
             this.SaveManagementGroupBox.TabStop = false;
             this.SaveManagementGroupBox.Text = "Save Management";
@@ -269,9 +312,10 @@ namespace Yuzu_Updater
             // LabelBackupSaveFilesDesc
             // 
             this.LabelBackupSaveFilesDesc.ForeColor = System.Drawing.Color.Silver;
-            this.LabelBackupSaveFilesDesc.Location = new System.Drawing.Point(30, 53);
+            this.LabelBackupSaveFilesDesc.Location = new System.Drawing.Point(20, 34);
+            this.LabelBackupSaveFilesDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelBackupSaveFilesDesc.Name = "LabelBackupSaveFilesDesc";
-            this.LabelBackupSaveFilesDesc.Size = new System.Drawing.Size(467, 91);
+            this.LabelBackupSaveFilesDesc.Size = new System.Drawing.Size(311, 59);
             this.LabelBackupSaveFilesDesc.TabIndex = 4;
             this.LabelBackupSaveFilesDesc.Text = "Backup save files before updating to newer builds to prevent potential data loss." +
     "\r\n\r\nBackups are stored in the same directory as the updater.";
@@ -279,42 +323,24 @@ namespace Yuzu_Updater
             // BackupSaveFilesCheckbox
             // 
             this.BackupSaveFilesCheckbox.AutoSize = true;
-            this.BackupSaveFilesCheckbox.Location = new System.Drawing.Point(7, 26);
+            this.BackupSaveFilesCheckbox.Location = new System.Drawing.Point(5, 17);
+            this.BackupSaveFilesCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BackupSaveFilesCheckbox.Name = "BackupSaveFilesCheckbox";
-            this.BackupSaveFilesCheckbox.Size = new System.Drawing.Size(166, 24);
+            this.BackupSaveFilesCheckbox.Size = new System.Drawing.Size(115, 17);
             this.BackupSaveFilesCheckbox.TabIndex = 0;
             this.BackupSaveFilesCheckbox.Text = "Backup Save Files";
             this.BackupSaveFilesCheckbox.UseVisualStyleBackColor = true;
             this.BackupSaveFilesCheckbox.CheckedChanged += new System.EventHandler(this.BackupSaveFilesCheckbox_CheckedChanged);
             // 
-            // SinModeCheckbox
-            // 
-            this.SinModeCheckbox.AutoSize = true;
-            this.SinModeCheckbox.Location = new System.Drawing.Point(7, 129);
-            this.SinModeCheckbox.Name = "SinModeCheckbox";
-            this.SinModeCheckbox.Size = new System.Drawing.Size(102, 24);
-            this.SinModeCheckbox.TabIndex = 8;
-            this.SinModeCheckbox.Text = "Sin Mode";
-            this.SinModeCheckbox.UseVisualStyleBackColor = true;
-            this.SinModeCheckbox.CheckedChanged += new System.EventHandler(this.SinModeCheckbox_CheckedChanged);
-            // 
-            // SinModeLabel
-            // 
-            this.SinModeLabel.ForeColor = System.Drawing.Color.Silver;
-            this.SinModeLabel.Location = new System.Drawing.Point(27, 156);
-            this.SinModeLabel.Name = "SinModeLabel";
-            this.SinModeLabel.Size = new System.Drawing.Size(467, 28);
-            this.SinModeLabel.TabIndex = 9;
-            this.SinModeLabel.Text = "Avoids unreliable file hosting providers.";
-            // 
             // SettingsView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(547, 471);
+            this.ClientSize = new System.Drawing.Size(365, 324);
             this.Controls.Add(this.TabController);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsView";
