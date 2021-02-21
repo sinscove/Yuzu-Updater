@@ -114,9 +114,9 @@ namespace Yuzu_Updater
             }
             catch (Exception)
             {
-                this.AutoLaunch = false;
+                this.AutoLaunch = true;
                 this.AutoClose = false;
-                this.LaunchAsAdmin = false;
+                this.LaunchAsAdmin = true;
                 this.BackupSaveFiles = false;
                 this.AcceleratedDownloads = true;
                 this.DesiredVersion = "Latest";
