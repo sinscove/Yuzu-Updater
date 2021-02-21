@@ -308,19 +308,23 @@ namespace Yuzu_Updater
                     SetControlsEnabled(false);
                     var response = await httpClient.GetAsync(archivedVersions[version]);
 
+                    var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
+                    var gitLink = gitUrl + version + "/Windows-Yuzu-EA-" + version + ".7z";
+
+                    response = await httpClient.GetAsync(gitLink);
                     if (response.IsSuccessStatusCode)
                     {
-                        var content = await response.Content.ReadAsStringAsync();
-                        var pattern = new Regex("https://cdn.*.anonfiles.com/.*/(YuzuEA-.*.7z)");
-
-                        var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
-                        var gitLink = gitUrl + version + "/Windows-Yuzu-EA-" + version + ".7z";
-
-                        response = await httpClient.GetAsync(gitLink);
-                        if (response.IsSuccessStatusCode)
+                        String fileName = "Windows-Yuzu-EA-" + version + ".7z";
+                        String address = gitLink;
+                        if (settings.AcceleratedDownloads)
                         {
-                            String fileName = "Windows-Yuzu-EA-" + version + ".7z";
-                            String address = gitLink;
+
+                            DownloadResult downloadResult = await DownloadManager.Download(address, Directory.GetCurrentDirectory(), settings.MaxConnections, ArchiveOctaneClient_DownloadProgressChanged);
+                            SetStatus($"Download Took: {downloadResult.TimeTaken}");
+                            ArchiveDownloadCompleted(new FileDownloadInfo(fileName, version, replaceAsLatest));
+                        }
+                        else
+                        {
                             using (WebClient archiveWebClient = new WebClient())
                             {
 
@@ -328,9 +332,14 @@ namespace Yuzu_Updater
                                 archiveWebClient.DownloadFileCompleted += ArchiveWebClient_DownloadFileCompleted;
                                 stopwatch.Start();
                                 archiveWebClient.DownloadFileAsync(new Uri(address), Directory.GetCurrentDirectory() + "\\" + fileName, new FileDownloadInfo(Directory.GetCurrentDirectory() + "\\" + fileName, version, replaceAsLatest));
-                                pattern = new Regex("");
                             }
                         }
+                    }
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var pattern = new Regex("https://cdn.*.anonfiles.com/.*/(YuzuEA-.*.7z)");
 
                         var match = pattern.Match(content);
 
