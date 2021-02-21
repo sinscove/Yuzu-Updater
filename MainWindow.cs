@@ -311,8 +311,28 @@ namespace Yuzu_Updater
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
-
                         var pattern = new Regex("https://cdn.*.anonfiles.com/.*/(YuzuEA-.*.7z)");
+
+                        var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
+                        var gitLink = gitUrl + version + "/Windows-Yuzu-EA-" + version + ".7z";
+                        Console.WriteLine(gitLink);
+
+                        response = await httpClient.GetAsync(gitLink);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            String fileName = "Windows-Yuzu-EA-" + version + ".7z";
+                            Console.WriteLine(fileName);
+                            String address = gitLink;
+                            using (WebClient archiveWebClient = new WebClient())
+                            {
+
+                                archiveWebClient.DownloadProgressChanged += ArchiveWebClient_DownloadProgressChanged;
+                                archiveWebClient.DownloadFileCompleted += ArchiveWebClient_DownloadFileCompleted;
+                                stopwatch.Start();
+                                archiveWebClient.DownloadFileAsync(new Uri(address), Directory.GetCurrentDirectory() + "\\" + fileName, new FileDownloadInfo(Directory.GetCurrentDirectory() + "\\" + fileName, version, replaceAsLatest));
+                                pattern = new Regex("");
+                            }
+                        }
 
                         var match = pattern.Match(content);
 

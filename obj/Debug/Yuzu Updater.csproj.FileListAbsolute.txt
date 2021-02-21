@@ -1,0 +1,21 @@
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\7za.exe
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\Yuzu Updater.exe.config
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\Yuzu Updater.exe.manifest
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\Yuzu Updater.application
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\Yuzu Updater.exe
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\Yuzu Updater.pdb
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\7z.NET.dll
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\7z.NET.pdb
+C:\Users\troy0\Documents\Yuzu-Updater\bin\Debug\7z.NET.xml
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.csprojAssemblyReference.cache
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu_Updater.MainForm.resources
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu_Updater.Properties.Resources.resources
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu_Updater.SettingsView.resources
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.csproj.GenerateResource.cache
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.csproj.CoreCompileInputs.cache
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.TrustInfo.xml
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.exe.manifest
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.application
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.csproj.CopyComplete
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.exe
+C:\Users\troy0\Documents\Yuzu-Updater\obj\Debug\Yuzu Updater.pdb
