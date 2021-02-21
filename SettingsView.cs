@@ -71,5 +71,10 @@ namespace Yuzu_Updater
             _settings.SinMode = SinModeCheckbox.Checked;
             _settings.Save();
         }
+
+        private void WarningLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
