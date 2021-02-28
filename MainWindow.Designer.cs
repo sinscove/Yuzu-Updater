@@ -42,7 +42,7 @@ namespace Yuzu_Updater
             // DownloadInstallProgressBar
             // 
             this.DownloadInstallProgressBar.Location = new System.Drawing.Point(8, 34);
-            this.DownloadInstallProgressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DownloadInstallProgressBar.Margin = new System.Windows.Forms.Padding(2);
             this.DownloadInstallProgressBar.Name = "DownloadInstallProgressBar";
             this.DownloadInstallProgressBar.Size = new System.Drawing.Size(303, 20);
             this.DownloadInstallProgressBar.TabIndex = 0;
@@ -66,7 +66,7 @@ namespace Yuzu_Updater
             this.VersionDropdown.Items.AddRange(new object[] {
             "Latest"});
             this.VersionDropdown.Location = new System.Drawing.Point(68, 8);
-            this.VersionDropdown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.VersionDropdown.Margin = new System.Windows.Forms.Padding(2);
             this.VersionDropdown.Name = "VersionDropdown";
             this.VersionDropdown.Size = new System.Drawing.Size(161, 24);
             this.VersionDropdown.TabIndex = 4;
@@ -94,7 +94,7 @@ namespace Yuzu_Updater
             this.InstallLaunchButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallLaunchButton.ForeColor = System.Drawing.Color.White;
             this.InstallLaunchButton.Location = new System.Drawing.Point(231, 8);
-            this.InstallLaunchButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InstallLaunchButton.Margin = new System.Windows.Forms.Padding(2);
             this.InstallLaunchButton.Name = "InstallLaunchButton";
             this.InstallLaunchButton.Size = new System.Drawing.Size(79, 21);
             this.InstallLaunchButton.TabIndex = 6;
@@ -107,7 +107,7 @@ namespace Yuzu_Updater
             this.SettingsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(173)))), ((int)(((byte)(233)))));
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SettingsButton.Location = new System.Drawing.Point(7, 84);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(2);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(57, 22);
             this.SettingsButton.TabIndex = 7;
@@ -130,11 +130,11 @@ namespace Yuzu_Updater
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Yuzu Updater v1.5.0";
+            this.Text = "Yuzu Updater v1.5.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);

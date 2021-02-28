@@ -233,17 +233,34 @@ namespace Yuzu_Updater
             SetStatusAndProgress("Fetching list of older versions", 0);
             try
             {
-                var response = await httpClient.GetAsync("https://pineappleea.github.io/");
+                var response = await httpClient.GetAsync("http://localhost");
+                Console.WriteLine("try succeeded");
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var pattern = new Regex("https://anonfiles.com/.*/YuzuEA-(.*)_7z", RegexOptions.Multiline);
-                    var content = await response.Content.ReadAsStringAsync();
-                    var matches = pattern.Matches(content);
+                    var patternAnon = new Regex("https://anonfiles.com/.*/YuzuEA-(.*)_7z", RegexOptions.Multiline);
+                    var contentAnon = await response.Content.ReadAsStringAsync();
+                    var matchesAnon = patternAnon.Matches(contentAnon);
 
-                    if (matches.Count > 0)
+                    var patternGit = new Regex("https://github.com/pineappleEA/pineapple-src/releases/tag/EA-(\\d*)", RegexOptions.Multiline);
+                    var contentGit = await response.Content.ReadAsStringAsync();
+                    var matchesGit = patternGit.Matches(contentGit);
+
+                    if (matchesGit.Count > 0)
                     {
-                        foreach (Match match in matches)
+                        foreach (Match match in matchesGit)
+                        {
+                            archivedVersions.Add(match.Groups[1].Value, match.Groups[0].Value);
+                            Invoke(new MethodInvoker(() =>
+                            {
+                                VersionDropdown.Items.Add(match.Groups[1].Value);
+                            }));
+                        }
+                    }
+
+                    if (matchesAnon.Count > 0)
+                    {
+                        foreach (Match match in matchesAnon)
                         {
                             archivedVersions.Add(match.Groups[1].Value, match.Groups[0].Value);
                             Invoke(new MethodInvoker(() =>
