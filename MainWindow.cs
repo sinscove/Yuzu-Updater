@@ -233,7 +233,7 @@ namespace Yuzu_Updater
             SetStatusAndProgress("Fetching list of older versions", 0);
             try
             {
-                var response = await httpClient.GetAsync("http://localhost");
+                var response = await httpClient.GetAsync("https://pineappleea.github.io/");
                 Console.WriteLine("try succeeded");
 
                 if (response.IsSuccessStatusCode)
