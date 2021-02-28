@@ -321,7 +321,7 @@ namespace Yuzu_Updater
             {
                 if (archivedVersions.ContainsKey(version))
                 {
-                    SetStatusAndProgress("Downloading version " + version + "\r\nThis will take while..", 0);
+                    SetStatusAndProgress("Downloading version " + version + "\r\nThis may take a while..", 0);
                     SetControlsEnabled(false);
 
                     var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
