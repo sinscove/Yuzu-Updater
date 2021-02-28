@@ -237,13 +237,29 @@ namespace Yuzu_Updater
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var pattern = new Regex("https://anonfiles.com/.*/YuzuEA-(.*)_7z", RegexOptions.Multiline);
-                    var content = await response.Content.ReadAsStringAsync();
-                    var matches = pattern.Matches(content);
+                    var patternAnon = new Regex("https://anonfiles.com/.*/YuzuEA-(.*)_7z", RegexOptions.Multiline);
+                    var contentAnon = await response.Content.ReadAsStringAsync();
+                    var matchesAnon = patternAnon.Matches(contentAnon);
 
-                    if (matches.Count > 0)
+                    var patternGit = new Regex("https://github.com/pineappleEA/pineapple-src/releases/tag/EA-(\\d*)", RegexOptions.Multiline);
+                    var contentGit = await response.Content.ReadAsStringAsync();
+                    var matchesGit = patternGit.Matches(contentGit);
+
+                    if (matchesGit.Count > 0)
                     {
-                        foreach (Match match in matches)
+                        foreach (Match match in matchesGit)
+                        {
+                            archivedVersions.Add(match.Groups[1].Value, match.Groups[0].Value);
+                            Invoke(new MethodInvoker(() =>
+                            {
+                                VersionDropdown.Items.Add(match.Groups[1].Value);
+                            }));
+                        }
+                    }
+
+                    if (matchesAnon.Count > 0)
+                    {
+                        foreach (Match match in matchesAnon)
                         {
                             archivedVersions.Add(match.Groups[1].Value, match.Groups[0].Value);
                             Invoke(new MethodInvoker(() =>
@@ -304,7 +320,7 @@ namespace Yuzu_Updater
             {
                 if (archivedVersions.ContainsKey(version))
                 {
-                    SetStatusAndProgress("Downloading version " + version + "\r\nThis will take while..", 0);
+                    SetStatusAndProgress("Downloading version " + version + "\r\nThis may take a while..", 0);
                     SetControlsEnabled(false);
 
                     var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
