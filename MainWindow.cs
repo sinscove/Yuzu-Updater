@@ -323,8 +323,8 @@ namespace Yuzu_Updater
                     SetStatusAndProgress("Downloading version " + version + "\r\nThis may take a while..", 0);
                     SetControlsEnabled(false);
 
-                    var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/download/EA-";
-                    var gitLink = gitUrl + version + "/Windows-Yuzu-EA-" + version + ".7z";
+                    var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/tag/EA-";
+                    var gitLink = gitUrl + version;
 
                     var anonResponse = await httpClient.GetAsync(archivedVersions[version]);
                     var gitResponse = await httpClient.GetAsync(gitLink);
@@ -332,7 +332,7 @@ namespace Yuzu_Updater
                     if (gitResponse.IsSuccessStatusCode)
                     {
                         String fileName = "Windows-Yuzu-EA-" + version + ".7z";
-                        String address = gitLink;
+                        String address = gitLink.Replace("tag","download") + "/Windows-Yuzu-EA-" + version + ".7z";
                         if (settings.AcceleratedDownloads)
                         {
 
