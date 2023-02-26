@@ -1,4 +1,4 @@
-﻿using SevenZipNET;
+using SevenZipNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +26,7 @@ namespace Yuzu_Updater
         public MainForm()
         {
             httpClient.Timeout = TimeSpan.FromSeconds(20);
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.31.1");
             InitializeComponent();
         }
 
@@ -124,6 +125,12 @@ namespace Yuzu_Updater
                                                     webClient.DownloadFileAsync(new Uri(address), Directory.GetCurrentDirectory() + "\\" + fileName, new FileDownloadInfo(fileName, version, false));
                                                 }
                                             }
+                                        }
+                                        else
+                                        {
+                                            SetStatusAndProgress($"Error {response.StatusCode.ToString()} returned.", 0);
+                                            logger.Log(LogLevel.ERROR, $"Download URL returned an error code {response.StatusCode.ToString()}");
+                                            SetControlsEnabled(true);
                                         }
                                     }
                                     else

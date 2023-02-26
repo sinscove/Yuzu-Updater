@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 namespace Yuzu_Updater
 {
@@ -41,19 +41,17 @@ namespace Yuzu_Updater
             // 
             // DownloadInstallProgressBar
             // 
-            this.DownloadInstallProgressBar.Location = new System.Drawing.Point(8, 34);
-            this.DownloadInstallProgressBar.Margin = new System.Windows.Forms.Padding(2);
+            this.DownloadInstallProgressBar.Location = new System.Drawing.Point(12, 51);
             this.DownloadInstallProgressBar.Name = "DownloadInstallProgressBar";
-            this.DownloadInstallProgressBar.Size = new System.Drawing.Size(303, 20);
+            this.DownloadInstallProgressBar.Size = new System.Drawing.Size(454, 30);
             this.DownloadInstallProgressBar.TabIndex = 0;
             // 
             // StatusLabel
             // 
             this.StatusLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLabel.Location = new System.Drawing.Point(68, 56);
-            this.StatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.StatusLabel.Location = new System.Drawing.Point(102, 84);
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(243, 51);
+            this.StatusLabel.Size = new System.Drawing.Size(364, 76);
             this.StatusLabel.TabIndex = 1;
             this.StatusLabel.Text = "Status";
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,10 +63,9 @@ namespace Yuzu_Updater
             this.VersionDropdown.FormattingEnabled = true;
             this.VersionDropdown.Items.AddRange(new object[] {
             "Latest"});
-            this.VersionDropdown.Location = new System.Drawing.Point(68, 8);
-            this.VersionDropdown.Margin = new System.Windows.Forms.Padding(2);
+            this.VersionDropdown.Location = new System.Drawing.Point(102, 12);
             this.VersionDropdown.Name = "VersionDropdown";
-            this.VersionDropdown.Size = new System.Drawing.Size(161, 24);
+            this.VersionDropdown.Size = new System.Drawing.Size(240, 31);
             this.VersionDropdown.TabIndex = 4;
             this.VersionDropdown.SelectedIndexChanged += new System.EventHandler(this.VersionDropdown_SelectedIndexChanged);
             // 
@@ -77,10 +74,9 @@ namespace Yuzu_Updater
             this.VersionLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(41)))));
             this.VersionLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VersionLabel.ForeColor = System.Drawing.Color.White;
-            this.VersionLabel.Location = new System.Drawing.Point(8, 8);
-            this.VersionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.VersionLabel.Location = new System.Drawing.Point(12, 12);
             this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(56, 21);
+            this.VersionLabel.Size = new System.Drawing.Size(84, 32);
             this.VersionLabel.TabIndex = 5;
             this.VersionLabel.Text = "Version:";
             this.VersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -93,10 +89,9 @@ namespace Yuzu_Updater
             this.InstallLaunchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InstallLaunchButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallLaunchButton.ForeColor = System.Drawing.Color.White;
-            this.InstallLaunchButton.Location = new System.Drawing.Point(231, 8);
-            this.InstallLaunchButton.Margin = new System.Windows.Forms.Padding(2);
+            this.InstallLaunchButton.Location = new System.Drawing.Point(346, 12);
             this.InstallLaunchButton.Name = "InstallLaunchButton";
-            this.InstallLaunchButton.Size = new System.Drawing.Size(79, 21);
+            this.InstallLaunchButton.Size = new System.Drawing.Size(118, 32);
             this.InstallLaunchButton.TabIndex = 6;
             this.InstallLaunchButton.Text = "Install";
             this.InstallLaunchButton.UseVisualStyleBackColor = false;
@@ -106,10 +101,9 @@ namespace Yuzu_Updater
             // 
             this.SettingsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(173)))), ((int)(((byte)(233)))));
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Location = new System.Drawing.Point(7, 84);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SettingsButton.Location = new System.Drawing.Point(10, 126);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(57, 22);
+            this.SettingsButton.Size = new System.Drawing.Size(86, 33);
             this.SettingsButton.TabIndex = 7;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = false;
@@ -117,10 +111,10 @@ namespace Yuzu_Updater
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(319, 113);
+            this.ClientSize = new System.Drawing.Size(478, 170);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.InstallLaunchButton);
             this.Controls.Add(this.VersionLabel);
@@ -130,11 +124,10 @@ namespace Yuzu_Updater
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Yuzu Updater v1.5.1";
+            this.Text = "Yuzu Updater v1.5.2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);
