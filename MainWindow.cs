@@ -352,7 +352,6 @@ namespace Yuzu_Updater
                     if (gitResponse.IsSuccessStatusCode)
                     {
 
-                        var str = await gitResponse.Content.ReadAsStringAsync();
                         var gitContent = JsonConvert.DeserializeObject<GithubRealeaseJSON>(await gitResponse.Content.ReadAsStringAsync());
 
                         var archivePath = gitContent.assets.Select(asset => asset.browser_download_url).FirstOrDefault(fileUrl =>
