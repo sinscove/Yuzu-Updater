@@ -5,12 +5,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using Newtonsoft.Json;
 using static Yuzu_Updater.DownloadManager;
 
 namespace Yuzu_Updater
@@ -321,6 +323,17 @@ namespace Yuzu_Updater
                 logger.Log(LogLevel.ERROR, e.StackTrace);
             }
         }
+        class GithubReleaseAsset
+        {
+            public string browser_download_url { get; set; }
+        }
+        class GithubRealeaseJSON
+        {
+            
+
+            public IEnumerable<GithubReleaseAsset> assets { get; set; }
+        }
+
         private async Task DownloadVersion(string version, bool replaceAsLatest)
         {
             try
@@ -331,19 +344,29 @@ namespace Yuzu_Updater
                     SetControlsEnabled(false);
 
                     var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/tag/EA-";
-                    var gitLink = gitUrl + version;
+                    var gitLink = "https://api.github.com/repos/pineappleEA/pineapple-src/releases/tags/EA-" + version;
 
                     var anonResponse = await httpClient.GetAsync(archivedVersions[version]);
                     var gitResponse = await httpClient.GetAsync(gitLink);
 
                     if (gitResponse.IsSuccessStatusCode)
                     {
-                        String fileName = "Windows-Yuzu-EA-" + version + ".7z";
-                        String address = gitLink.Replace("tag","download") + "/Windows-Yuzu-EA-" + version + ".7z";
+
+                        var gitContent = JsonConvert.DeserializeObject<GithubRealeaseJSON>(await gitResponse.Content.ReadAsStringAsync());
+
+                        var archivePath = gitContent.assets.Select(asset => asset.browser_download_url).FirstOrDefault(fileUrl =>
+                            fileUrl.Contains("Windows-Yuzu-EA") && (fileUrl.EndsWith(".7z") || fileUrl.EndsWith(".zip")));
+
+                        if (string.IsNullOrEmpty(archivePath))
+                        {
+                            throw new Exception($"Could not find archived file for release ${version} at ${gitLink}");
+                        }
+
+                        var fileName = Path.GetFileName(archivePath);
                         if (settings.AcceleratedDownloads)
                         {
 
-                            DownloadResult downloadResult = await DownloadManager.Download(address, Directory.GetCurrentDirectory(), settings.MaxConnections, ArchiveOctaneClient_DownloadProgressChanged);
+                            DownloadResult downloadResult = await DownloadManager.Download(archivePath, Directory.GetCurrentDirectory(), settings.MaxConnections, ArchiveOctaneClient_DownloadProgressChanged);
                             SetStatus($"Download Took: {downloadResult.TimeTaken}");
                             ArchiveDownloadCompleted(new FileDownloadInfo(fileName, version, replaceAsLatest));
                         }
@@ -355,7 +378,7 @@ namespace Yuzu_Updater
                                 archiveWebClient.DownloadProgressChanged += ArchiveWebClient_DownloadProgressChanged;
                                 archiveWebClient.DownloadFileCompleted += ArchiveWebClient_DownloadFileCompleted;
                                 stopwatch.Start();
-                                archiveWebClient.DownloadFileAsync(new Uri(address), Directory.GetCurrentDirectory() + "\\" + fileName, new FileDownloadInfo(Directory.GetCurrentDirectory() + "\\" + fileName, version, replaceAsLatest));
+                                archiveWebClient.DownloadFileAsync(new Uri(archivePath), Directory.GetCurrentDirectory() + "\\" + fileName, new FileDownloadInfo(Directory.GetCurrentDirectory() + "\\" + fileName, version, replaceAsLatest));
                             }
                         }
                     }
