@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Reflection;
 
 namespace Yuzu_Updater
 {
@@ -127,7 +128,7 @@ namespace Yuzu_Updater
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Yuzu Updater v1.5.3";
+            this.Text = $"Yuzu Updater [GETS LOADED AT RUNTIME]";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);

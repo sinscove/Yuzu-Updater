@@ -14,6 +14,10 @@ using System.Windows.Forms;
 using System.Threading;
 using Newtonsoft.Json;
 using static Yuzu_Updater.DownloadManager;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
+using System.Net.NetworkInformation;
+using System.Reflection;
 
 namespace Yuzu_Updater
 {
@@ -25,6 +29,8 @@ namespace Yuzu_Updater
         private Dictionary<string, string> archivedVersions = new Dictionary<string, string>();
         private Stopwatch stopwatch = new Stopwatch();
         private SettingsView settingsView = new SettingsView();
+        private string updaterVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
         public MainForm()
         {
             httpClient.Timeout = TimeSpan.FromSeconds(20);
@@ -34,7 +40,7 @@ namespace Yuzu_Updater
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            this.Text = $"Yuzu Updater v{updaterVersion.Substring(0, updaterVersion.Length - 2)}";
         }
 
         private async Task CheckForUpdates()
@@ -63,7 +69,8 @@ namespace Yuzu_Updater
                                 latestArchivedVersion = int.Parse(VersionDropdown.Items[1].ToString());
                                 versionAsInt = int.Parse(version);
                                 currentVersion = int.Parse(settings.Version);
-                            }catch(Exception)
+                            }
+                            catch (Exception)
                             {
                                 // Ignore
                             }
@@ -141,7 +148,6 @@ namespace Yuzu_Updater
                                         logger.Log(LogLevel.WARNING, "Couldn't parse URL for download");
                                         SetControlsEnabled(true);
                                     }
-
                                 }
                             }
                         }
@@ -174,7 +180,6 @@ namespace Yuzu_Updater
                                 await AttemptFallbackDownload();
                             }
                         }
-
                     }
                 }
                 else
@@ -300,7 +305,7 @@ namespace Yuzu_Updater
                 string appDataPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\yuzu\\nand\\user";
                 string version = settings.Version;
                 if (version.Trim().Equals("")) version = "0";
-                if(Directory.Exists(appDataPath))
+                if (Directory.Exists(appDataPath))
                 {
                     if (!Directory.Exists($"{Directory.GetCurrentDirectory()}\\backup-{version}"))
                     {
@@ -316,21 +321,21 @@ namespace Yuzu_Updater
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 SetStatus("Couldn't create backup.");
                 logger.Log(LogLevel.ERROR, e.Message);
                 logger.Log(LogLevel.ERROR, e.StackTrace);
             }
         }
-        class GithubReleaseAsset
+
+        private class GithubReleaseAsset
         {
             public string browser_download_url { get; set; }
         }
-        class GithubRealeaseJSON
-        {
-            
 
+        private class GithubRealeaseJSON
+        {
             public IEnumerable<GithubReleaseAsset> assets { get; set; }
         }
 
@@ -351,7 +356,6 @@ namespace Yuzu_Updater
 
                     if (gitResponse.IsSuccessStatusCode)
                     {
-
                         var gitContent = JsonConvert.DeserializeObject<GithubRealeaseJSON>(await gitResponse.Content.ReadAsStringAsync());
 
                         var archivePath = gitContent.assets.Select(asset => asset.browser_download_url).FirstOrDefault(fileUrl =>
@@ -365,7 +369,6 @@ namespace Yuzu_Updater
                         var fileName = Path.GetFileName(archivePath);
                         if (settings.AcceleratedDownloads)
                         {
-
                             DownloadResult downloadResult = await DownloadManager.Download(archivePath, Directory.GetCurrentDirectory(), settings.MaxConnections, ArchiveOctaneClient_DownloadProgressChanged);
                             SetStatus($"Download Took: {downloadResult.TimeTaken}");
                             ArchiveDownloadCompleted(new FileDownloadInfo(fileName, version, replaceAsLatest));
@@ -374,7 +377,6 @@ namespace Yuzu_Updater
                         {
                             using (WebClient archiveWebClient = new WebClient())
                             {
-
                                 archiveWebClient.DownloadProgressChanged += ArchiveWebClient_DownloadProgressChanged;
                                 archiveWebClient.DownloadFileCompleted += ArchiveWebClient_DownloadFileCompleted;
                                 stopwatch.Start();
@@ -396,7 +398,6 @@ namespace Yuzu_Updater
                             String fileName = match.Groups[1].Value;
                             if (settings.AcceleratedDownloads)
                             {
-
                                 DownloadResult downloadResult = await DownloadManager.Download(address, Directory.GetCurrentDirectory(), settings.MaxConnections, ArchiveOctaneClient_DownloadProgressChanged);
                                 SetStatus($"Download Took: {downloadResult.TimeTaken}");
                                 ArchiveDownloadCompleted(new FileDownloadInfo(fileName, version, replaceAsLatest));
@@ -405,7 +406,6 @@ namespace Yuzu_Updater
                             {
                                 using (WebClient archiveWebClient = new WebClient())
                                 {
-                                    
                                     archiveWebClient.DownloadProgressChanged += ArchiveWebClient_DownloadProgressChanged;
                                     archiveWebClient.DownloadFileCompleted += ArchiveWebClient_DownloadFileCompleted;
                                     stopwatch.Start();
@@ -442,14 +442,23 @@ namespace Yuzu_Updater
             SetProgress(progress);
         }
 
-        private void ArchiveDownloadCompleted(FileDownloadInfo info)
+        private async void ArchiveDownloadCompleted(FileDownloadInfo info)
         {
             stopwatch.Reset();
             ZipArchive archive = null;
             try
             {
+                string zipFile = Path.Combine(Directory.GetCurrentDirectory(), info.fileName);
                 SetStatus("Extracting files..\r\nThis may take a while..");
-                SevenZipExtractor extractor = new SevenZipExtractor(Directory.GetCurrentDirectory() + "\\" + info.fileName);
+
+                if (!File.Exists(zipFile)) //retry download if the zip archive is not found
+                {
+                    logger.Log(LogLevel.WARNING, $"Failed downloading Yuzu Version {info.version}, retrying...");
+                    await DownloadVersion(info.version, info.replaceAsLatest);
+                    return;
+                }
+
+                SevenZipExtractor extractor = new SevenZipExtractor(zipFile);
                 if (extractor.TestArchive())
                 {
                     extractor.ProgressUpdated += Extractor_ProgressUpdated;
@@ -500,6 +509,7 @@ namespace Yuzu_Updater
                 SetControlsEnabled(true);
             }
         }
+
         private void ArchiveWebClient_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
         {
             // Calculate download speed and output it to labelSpeed.
@@ -518,7 +528,7 @@ namespace Yuzu_Updater
 
         private void ArchiveWebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            FileDownloadInfo info = e.UserState as FileDownloadInfo;
+            FileDownloadInfo info = (FileDownloadInfo)e.UserState;
             ArchiveDownloadCompleted(info);
         }
 
@@ -538,7 +548,6 @@ namespace Yuzu_Updater
             SetProgress(e.ProgressPercentage);
         }
 
-        
         private void SetStatusAndProgress(String status, int value)
         {
             try
@@ -570,6 +579,7 @@ namespace Yuzu_Updater
                 }));
             }
         }
+
         private void SetProgress(int value)
         {
             if (!DownloadInstallProgressBar.IsDisposed && DownloadInstallProgressBar.InvokeRequired)
@@ -588,12 +598,12 @@ namespace Yuzu_Updater
 
         private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-           try
+            try
             {
-                FileDownloadInfo info = e.UserState as FileDownloadInfo;
+                FileDownloadInfo info = (FileDownloadInfo)e.UserState;
                 DownloadCompleted(info);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Log(LogLevel.ERROR, ex.Message);
                 logger.Log(LogLevel.ERROR, ex.StackTrace);
@@ -662,7 +672,7 @@ namespace Yuzu_Updater
             {
                 try
                 {
-                    Application.Exit();
+                    System.Windows.Forms.Application.Exit();
                 }
                 catch (Exception e)
                 {
@@ -674,7 +684,6 @@ namespace Yuzu_Updater
             }
 
             SetControlsEnabled(true);
-
         }
 
         private void SetControlsEnabled(bool enabled)
@@ -816,7 +825,7 @@ namespace Yuzu_Updater
             {
                 yuzuEmulator.Start();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 logger.Log(LogLevel.ERROR, e.Message);
                 logger.Log(LogLevel.ERROR, e.StackTrace);
