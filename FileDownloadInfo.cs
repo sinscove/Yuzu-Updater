@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Yuzu_Updater
 {
-    class FileDownloadInfo
+    internal struct FileDownloadInfo
     {
-        public string fileName { get; set;}
+        public string fileName { get; set; }
         public string version { get; set; }
         public bool replaceAsLatest { get; set; }
 
