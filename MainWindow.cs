@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using System.Threading;
 using Newtonsoft.Json;
 using static Yuzu_Updater.DownloadManager;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
+using System.Net.NetworkInformation;
 
 namespace Yuzu_Updater
 {
@@ -436,14 +439,23 @@ namespace Yuzu_Updater
             SetProgress(progress);
         }
 
-        private void ArchiveDownloadCompleted(FileDownloadInfo info)
+        private async void ArchiveDownloadCompleted(FileDownloadInfo info)
         {
             stopwatch.Reset();
             ZipArchive archive = null;
             try
             {
+                string zipFile = Path.Combine(Directory.GetCurrentDirectory(), info.fileName);
                 SetStatus("Extracting files..\r\nThis may take a while..");
-                SevenZipExtractor extractor = new SevenZipExtractor(Directory.GetCurrentDirectory() + "\\" + info.fileName);
+
+                if (!File.Exists(zipFile)) //retry download if the zip archive is not found
+                {
+                    logger.Log(LogLevel.WARNING, $"Failed downloading Yuzu Version {info.version}, retrying...");
+                    await DownloadVersion(info.version, info.replaceAsLatest);
+                    return;
+                }
+
+                SevenZipExtractor extractor = new SevenZipExtractor(zipFile);
                 if (extractor.TestArchive())
                 {
                     extractor.ProgressUpdated += Extractor_ProgressUpdated;
@@ -657,7 +669,7 @@ namespace Yuzu_Updater
             {
                 try
                 {
-                    Application.Exit();
+                    System.Windows.Forms.Application.Exit();
                 }
                 catch (Exception e)
                 {
