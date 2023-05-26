@@ -17,6 +17,7 @@ using static Yuzu_Updater.DownloadManager;
 using System.Drawing;
 using static System.Net.Mime.MediaTypeNames;
 using System.Net.NetworkInformation;
+using System.Reflection;
 
 namespace Yuzu_Updater
 {
@@ -28,6 +29,7 @@ namespace Yuzu_Updater
         private Dictionary<string, string> archivedVersions = new Dictionary<string, string>();
         private Stopwatch stopwatch = new Stopwatch();
         private SettingsView settingsView = new SettingsView();
+        private string updaterVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public MainForm()
         {
@@ -38,6 +40,7 @@ namespace Yuzu_Updater
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text = $"Yuzu Updater v{updaterVersion.Substring(0, updaterVersion.Length - 2)}";
         }
 
         private async Task CheckForUpdates()
