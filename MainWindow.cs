@@ -59,7 +59,7 @@ namespace Yuzu_Updater
                         {
                             SetStatusAndProgress("Retrieved Database Info", 25);
                             string version = lines[0];
-                            string nextURL = lines[2];
+                            string nextURL = lines[1];
 
                             int latestArchivedVersion = 0;
                             int versionAsInt = 0;
