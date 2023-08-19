@@ -348,7 +348,7 @@ namespace Yuzu_Updater
                     SetStatusAndProgress("Downloading version " + version + "\r\nThis may take a while..", 0);
                     SetControlsEnabled(false);
 
-                    var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/tag/EA-";
+                    //var gitUrl = "https://github.com/pineappleEA/pineapple-src/releases/tag/EA-";
                     var gitLink = "https://api.github.com/repos/pineappleEA/pineapple-src/releases/tags/EA-" + version;
 
                     var anonResponse = await httpClient.GetAsync(archivedVersions[version]);
